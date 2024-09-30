@@ -16,6 +16,14 @@ const questions = [
     }
 ];
 
+// Função para embaralhar as perguntas
+function shuffleQuestions() {
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+}
+
 let currentQuestionIndex = 0;
 let score = 0;
 
@@ -56,7 +64,10 @@ function nextQuestion() {
 function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    shuffleQuestions(); // Embaralha as perguntas quando reiniciar o quiz
     loadQuestion();
 }
 
+// Chama a função para embaralhar as perguntas antes de começar
+shuffleQuestions();
 loadQuestion();
